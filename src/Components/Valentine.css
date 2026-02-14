@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500;700&display=swap');
+
+/* ================= BODY ================= */
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: "Cormorant Garamond", serif;
+  background: radial-gradient(circle at bottom, #0b132b, #000000 85%);
+  color: white;
+}
+
+/* ================= GALAXY ================= */
+
+.galaxy-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -5;
+}
+
+/* ================= MAIN CONTAINER ================= */
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* ================= MOON ================= */
+
+.moon {
+  position: absolute;
+  top: 12%;
+  right: 10%;
+  width: 170px;
+  height: 170px;
+  background: radial-gradient(circle at 30% 30%, #fff, #ddd 60%, #bbb);
+  border-radius: 50%;
+  box-shadow:
+    0 0 100px rgba(255,255,255,0.8),
+    0 0 160px rgba(255,255,255,0.3);
+  animation: rotateMoon 80s linear infinite;
+}
+
+@keyframes rotateMoon {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ================= WATER ================= */
+
+.water {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to top, rgba(0,0,50,0.8), transparent);
+  animation: ripple 6s ease-in-out infinite alternate;
+}
+
+@keyframes ripple {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(1.05); }
+}
+
+/* ================= CARD ================= */
+
+.card {
+  background: rgba(255, 255, 255, 0.05);  /* lighter transparent */
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 28px;
+
+  width: 95%;
+  max-width: 1100px;
+  height: 85vh;
+  padding: 40px;
+
+  box-shadow:
+    0 0 40px rgba(255,255,255,0.08),
+    0 0 120px rgba(0,0,0,0.3);
+
+  z-index: 2;
+}
+
+/* Initial ask card animation */
+.fade-in {
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= ASK STAGE ================= */
+
+.card:not(.final-layout) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================= FINAL LAYOUT ================= */
+
+.final-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+}
+
+/* Left panel (images) */
+.left-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Right panel (poem) */
+.right-panel {
+  flex: 1.2;
+  overflow-y: auto;
+  max-height: 100%;
+  padding-right: 10px;
+}
+
+/* ================= SLIDESHOW ================= */
+
+.slideshow {
+  width: 350px;
+  height: 350px;
+}
+
+.memory-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow:
+    0 0 50px rgba(255,255,255,0.6),
+    0 0 120px rgba(255,255,255,0.2);
+  transition: transform 3s ease;
+}
+
+.memory-image:hover {
+  transform: scale(1.03);
+}
+
+/* ================= TEXT ================= */
+
+.romantic {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.flirty-line {
+  font-style: italic;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-shadow: 0 0 10px #ff69b4;
+}
+
+/* ================= BUTTONS ================= */
+
+.buttons {
+  position: relative;
+  margin-top: 30px;
+}
+
+button {
+  padding: 14px 32px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+/* YES Button */
+
+.yes-btn {
+  background: linear-gradient(45deg, #6c63ff, #9d4edd);
+  color: white;
+  box-shadow: 0 0 20px #9d4edd;
+}
+
+.yes-btn:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 30px #ff69b4,
+    0 0 60px #ffb6c1;
+}
+
+/* NO Button */
+
+.no-btn {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: transform 1s cubic-bezier(0.25,1,0.5,1);
+}
+
+/* ================= TYPEWRITER ================= */
+
+.typewriter {
+  white-space: pre-wrap;
+  font-size: 19px;
+  line-height: 1.9;
+  letter-spacing: 1px;
+  animation: fadeInPoem 2s ease;
+  position: relative;
+}
+
+.typewriter::after {
+  content: "|";
+  margin-left: 6px;
+  animation: blinkCursor 1s infinite;
+}
+
+@keyframes blinkCursor {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeInPoem {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Shimmer effect */
+
+.shimmer {
+  background: linear-gradient(90deg, #fff, #ffd700, #fff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+/* Signature */
+
+.signature {
+  margin-top: 25px;
+  font-weight: bold;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.password-input {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin: 15px 0;
+  width: 200px;
+  text-align: center;
+  font-size: 16px;
+}
